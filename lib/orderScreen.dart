@@ -167,7 +167,10 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 
   Widget buildPriceBtn() {
-    var quantity = _quantityController.text;
+    var quantity = int.tryParse(_quantityController.text) ?? 0;
+    var price = _selectedDrug?.price ?? 0;
+    var totalPrice = quantity * price;
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25),
       width: double.infinity,
@@ -188,7 +191,7 @@ class _OrderScreenState extends State<OrderScreen> {
           ),
         ),
         child: Text(
-          "Price: ${quantity * _selectedDrug!.price}",
+          "Price: $totalPrice",
           style: TextStyle(
             color: Color(0xff5ac18e),
             fontSize: 18,
@@ -198,6 +201,7 @@ class _OrderScreenState extends State<OrderScreen> {
       ),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {

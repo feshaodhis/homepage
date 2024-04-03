@@ -44,8 +44,8 @@ class _DrugListDropdownState extends State<DrugListDropdown> {
           value: selectedOption,
           onChanged: (String? newValue) {
             setState(() {
-              widget.onOptionChanged(items.firstWhere((drug) => drug.drugName == selectedOption));
               selectedOption = newValue!;
+              widget.onOptionChanged(items.firstWhere((drug) => drug.drugName == selectedOption));
             });
           },
           style: const TextStyle(
