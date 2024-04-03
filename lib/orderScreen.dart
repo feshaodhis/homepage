@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:homepage/dropdown.dart';
-import 'package:homepage/pricefetch.dart';
+import 'drug.dart';
 import 'mpesaScreen.dart';
 import 'pickScreen.dart'; // Import PickScreen class
-import 'signScreen.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -14,35 +13,39 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  String selectedOption = "Panadol";
-  final TextEditingController _controller = TextEditingController();
+  Drug? _selectedDrug;
+  final TextEditingController _quantityController = TextEditingController();
+
 
   @override
   void dispose() {
-    _controller.dispose();
+    _quantityController.dispose();
     super.dispose();
   }
 
   Widget drugsDropdownBtn() {
-    return Container(
-      width: 600, // Adjust the width as needed
-      padding: const EdgeInsets.symmetric(horizontal: 50.0),
-      height: 60,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 6,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: MyDropdown()
-    );
-  }
+    var _dropdown = DrugListDropdown(onOptionChanged: (Drug? drug) {
+      _selectedDrug = drug;
+    });
 
+    return Container(
+        width: 600,
+        // Adjust the width as needed
+        padding: const EdgeInsets.symmetric(horizontal: 50.0),
+        height: 60,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 6,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: _dropdown);
+  }
 
   Widget buildQuantity(BuildContext context) {
     return Column(
@@ -72,7 +75,7 @@ class _OrderScreenState extends State<OrderScreen> {
           ),
           height: 60,
           child: TextField(
-            controller: _controller,
+            controller: _quantityController,
             keyboardType: TextInputType.number,
             style: const TextStyle(
               color: Colors.black87,
@@ -163,6 +166,39 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 
+  Widget buildPriceBtn() {
+    var quantity = _quantityController.text;
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 25),
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () {
+          // Navigate to the MpesaScreen when button is pressed
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MpesaScreen()),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          elevation: 5,
+          backgroundColor: Colors.white,
+          padding: const EdgeInsets.all(15),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+        child: Text(
+          "Price: ${quantity * _selectedDrug!.price}",
+          style: TextStyle(
+            color: Color(0xff5ac18e),
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -218,7 +254,7 @@ class _OrderScreenState extends State<OrderScreen> {
                       const SizedBox(height: 20),
                       buildQuantity(context),
                       const SizedBox(height: 20),
-                      //buildPriceBtn(),
+                      buildPriceBtn(),
                       const SizedBox(height: 10),
                       buildLipaBtn(),
                       const SizedBox(height: 10),
