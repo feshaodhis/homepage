@@ -98,38 +98,7 @@ class _OrderScreenState extends State<OrderScreen> {
       ],
     );
   }
-  Widget buildPriceBtn() {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 25),
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () {
-          // Navigate to the MpesaScreen when button is pressed
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MpesaScreen()),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          elevation: 5,
-          backgroundColor: Colors.white,
-          padding: const EdgeInsets.all(15),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-        ),
 
-        child: const Text(
-          "Price ",
-          style: TextStyle(
-            color: Color(0xff5ac18e),
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }
   Widget buildLipaBtn() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25),
@@ -249,7 +218,7 @@ class _OrderScreenState extends State<OrderScreen> {
                       const SizedBox(height: 20),
                       buildQuantity(context),
                       const SizedBox(height: 20),
-                      buildPriceBtn(),
+                      //buildPriceBtn(),
                       const SizedBox(height: 10),
                       buildLipaBtn(),
                       const SizedBox(height: 10),
