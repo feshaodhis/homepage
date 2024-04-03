@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'orderScreen.dart'; // Import LoginScreen class
 
 class ConfirmationScreen extends StatefulWidget {
+  const ConfirmationScreen({super.key});
+
   @override
   _ConfirmationScreenState createState() => _ConfirmationScreenState();
 }
@@ -12,24 +14,24 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
 
   Widget buildBackHomeBtn(){
     return Container(
-      padding: EdgeInsets.symmetric(vertical:25),
+      padding: const EdgeInsets.symmetric(vertical:25),
       width: double.infinity,
       child: ElevatedButton(
           onPressed: () {
             // Navigate to LoginScreen when Back Home button is pressed
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => OrderScreen()),
+              MaterialPageRoute(builder: (context) => const OrderScreen()),
             );
           },
           style: ElevatedButton.styleFrom(
             elevation: 5, backgroundColor: Colors.white,
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15)
             ),
           ),
-          child: Text(
+          child: const Text(
               "Back Home",
               style: TextStyle(
                 color: Color(0xff5ac18e),
@@ -52,7 +54,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
               Container(
                 height: double.infinity,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
@@ -63,15 +65,15 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                           Color(0xff5ac18E),
                         ])),
                 child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 25,
                     vertical: 120,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         "Utibu Health",
                         style: TextStyle(
                           color: Colors.white,
@@ -79,14 +81,14 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height:50),
-                      Icon(
+                      const SizedBox(height:50),
+                      const Icon(
                         Icons.verified,
                         color: Colors.green,
                         size: 100,
                       ),
-                      SizedBox(height:50),
-                      Text(
+                      const SizedBox(height:50),
+                      const Text(
                         "Paid",
                         style: TextStyle(
                           color: Colors.white,
@@ -96,7 +98,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                       ),
 
                       buildBackHomeBtn(),
-                      SizedBox(height:20),
+                      const SizedBox(height:20),
                     ],
                   ),
                 ),

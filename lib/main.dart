@@ -5,6 +5,7 @@ import 'orderScreen.dart'; // Import OrderScreen class
 import "mpesaScreen.dart";//Import MpesaScreen class
 import 'confirmationScreen.dart';
 import 'pickScreen.dart';
+import "signScreen.dart";
 
 Future main()  async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,10 +18,12 @@ Future main()  async {
       //storageBucket: 'myapp-b9yt18.appspot.com',
     )
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,10 +32,11 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => LoginScreen(),
-        '/order': (context) => OrderScreen(),
-        '/mpesa': (context) => MpesaScreen(),
-        '/confirmation': (context) => ConfirmationScreen(),
-        '/pick': (context) => PickScreen(),
+        '/order': (context) => const OrderScreen(),
+        '/mpesa': (context) => const MpesaScreen(),
+        '/confirmation': (context) => const ConfirmationScreen(),
+        '/pick': (context) => const PickScreen(),
+        '/sign': (context) => SignScreen(),
       },
     );
   }

@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'confirmationScreen.dart'; // Import ConfirmationScreen class
 
 class MpesaScreen extends StatefulWidget {
+  const MpesaScreen({super.key});
+
   @override
   _MpesaScreenState createState() => _MpesaScreenState();
 }
@@ -14,7 +16,7 @@ class _MpesaScreenState extends State<MpesaScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           "Phone Number",
           style: TextStyle(
             color: Colors.white,
@@ -22,13 +24,13 @@ class _MpesaScreenState extends State<MpesaScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black26,
                 blurRadius: 6,
@@ -40,10 +42,10 @@ class _MpesaScreenState extends State<MpesaScreen> {
           child: TextField(
             controller: phoneNumberController,
             keyboardType: TextInputType.phone,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black87,
             ),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14),
               prefixIcon: Icon(
@@ -63,25 +65,25 @@ class _MpesaScreenState extends State<MpesaScreen> {
 
   Widget buildProceedBtn() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25),
+      padding: const EdgeInsets.symmetric(vertical: 25),
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
           // Navigate to ConfirmationScreen when Proceed button is pressed
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ConfirmationScreen()),
+            MaterialPageRoute(builder: (context) => const ConfirmationScreen()),
           );
         },
         style: ElevatedButton.styleFrom(
           elevation: 5,
           backgroundColor: Colors.white,
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        child: Text(
+        child: const Text(
           "Proceed",
           style: TextStyle(
             color: Color(0xff5ac18e),
@@ -104,7 +106,7 @@ class _MpesaScreenState extends State<MpesaScreen> {
               Container(
                 height: double.infinity,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -117,15 +119,15 @@ class _MpesaScreenState extends State<MpesaScreen> {
                   ),
                 ),
                 child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 25,
                     vertical: 120,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         "Utibu Health",
                         style: TextStyle(
                           color: Colors.white,
@@ -133,8 +135,8 @@ class _MpesaScreenState extends State<MpesaScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 20),
-                      Text(
+                      const SizedBox(height: 20),
+                      const Text(
                         "Mpesa-Pay",
                         style: TextStyle(
                           color: Colors.white,
@@ -142,9 +144,9 @@ class _MpesaScreenState extends State<MpesaScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       buildNumber(),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       buildProceedBtn(),
                     ],
                   ),

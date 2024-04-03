@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:homepage/dropdown.dart';
+import 'package:homepage/pricefetch.dart';
 import 'mpesaScreen.dart';
 import 'pickScreen.dart'; // Import PickScreen class
+import 'signScreen.dart';
 
 class OrderScreen extends StatefulWidget {
+  const OrderScreen({super.key});
+
   @override
   _OrderScreenState createState() => _OrderScreenState();
 }
 
 class _OrderScreenState extends State<OrderScreen> {
   String selectedOption = "Panadol";
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   @override
   void dispose() {
@@ -21,12 +26,12 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget drugsDropdownBtn() {
     return Container(
       width: 600, // Adjust the width as needed
-      padding: EdgeInsets.symmetric(horizontal: 50.0),
+      padding: const EdgeInsets.symmetric(horizontal: 50.0),
       height: 60,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black26,
             blurRadius: 6,
@@ -34,39 +39,16 @@ class _OrderScreenState extends State<OrderScreen> {
           ),
         ],
       ),
-      child: DropdownButton<String>(
-        value: selectedOption,
-        onChanged: (String? newValue) {
-          setState(() {
-            selectedOption = newValue!;
-          });
-        },
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 25.0,
-          fontWeight: FontWeight.bold,
-        ),
-        icon: Icon(Icons.arrow_drop_down),
-        iconSize: 30.0,
-        elevation: 16,
-        underline: SizedBox(),
-        alignment: Alignment.center, // Align the dropdown options to the center
-        items: <String>['Panadol', 'Arvs', 'Celestamin', 'Cough Cyrup']
-            .map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Center(child: Text(value)), // Center the text
-          );
-        }).toList(),
-      ),
+      child: MyDropdown()
     );
   }
+
 
   Widget buildQuantity(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           "Enter Quantity",
           style: TextStyle(
             color: Colors.white,
@@ -74,13 +56,13 @@ class _OrderScreenState extends State<OrderScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black26,
                 blurRadius: 6,
@@ -92,10 +74,10 @@ class _OrderScreenState extends State<OrderScreen> {
           child: TextField(
             controller: _controller,
             keyboardType: TextInputType.number,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black87,
             ),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14),
               prefixIcon: Icon(
@@ -116,28 +98,59 @@ class _OrderScreenState extends State<OrderScreen> {
       ],
     );
   }
-
-  Widget buildLipaBtn() {
+  Widget buildPriceBtn() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25),
+      padding: const EdgeInsets.symmetric(vertical: 25),
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
           // Navigate to the MpesaScreen when button is pressed
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => MpesaScreen()),
+            MaterialPageRoute(builder: (context) => const MpesaScreen()),
           );
         },
         style: ElevatedButton.styleFrom(
           elevation: 5,
           backgroundColor: Colors.white,
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        child: Text(
+
+        child: const Text(
+          "Price ",
+          style: TextStyle(
+            color: Color(0xff5ac18e),
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+  Widget buildLipaBtn() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 25),
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () {
+          // Navigate to the MpesaScreen when button is pressed
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MpesaScreen()),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          elevation: 5,
+          backgroundColor: Colors.white,
+          padding: const EdgeInsets.all(15),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+        child: const Text(
           "Lipa na Mpesa",
           style: TextStyle(
             color: Color(0xff5ac18e),
@@ -151,25 +164,25 @@ class _OrderScreenState extends State<OrderScreen> {
 
   Widget buildPickBtn() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25),
+      padding: const EdgeInsets.symmetric(vertical: 25),
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
           // Navigate to the PickScreen when button is pressed
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => PickScreen()),
+            MaterialPageRoute(builder: (context) => const PickScreen()),
           );
         },
         style: ElevatedButton.styleFrom(
           elevation: 5,
           backgroundColor: Colors.white,
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        child: Text(
+        child: const Text(
           "Pay When You Pick",
           style: TextStyle(
             color: Color(0xff5ac18e),
@@ -193,7 +206,7 @@ class _OrderScreenState extends State<OrderScreen> {
               Container(
                 height: double.infinity,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -206,15 +219,15 @@ class _OrderScreenState extends State<OrderScreen> {
                   ),
                 ),
                 child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 25,
                     vertical: 120,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         "Utibu Health",
                         style: TextStyle(
                           color: Colors.white,
@@ -222,8 +235,8 @@ class _OrderScreenState extends State<OrderScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 20),
-                      Text(
+                      const SizedBox(height: 20),
+                      const Text(
                         "Place Order",
                         style: TextStyle(
                           color: Colors.white,
@@ -231,14 +244,18 @@ class _OrderScreenState extends State<OrderScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       drugsDropdownBtn(),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       buildQuantity(context),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 20),
+                      buildPriceBtn(),
+                      const SizedBox(height: 10),
                       buildLipaBtn(),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       buildPickBtn(),
+                      //SizedBox(height:20),
+                      //buildSignUpBtn(),
                     ],
                   ),
                 ),
