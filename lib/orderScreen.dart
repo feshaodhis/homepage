@@ -168,8 +168,19 @@ class _OrderScreenState extends State<OrderScreen> {
 
   Widget buildPriceBtn() {
     var quantity = int.tryParse(_quantityController.text) ?? 0;
-    var price = _selectedDrug?.price ?? 0;
+    var price = _selectedDrug?.price ?? 0; // Default to 0 if _selectedDrug is null
+
+    if (_selectedDrug == null) {
+      // Handle the case where no drug is selected (e.g., show a message)
+      return const Text("Please select a drug");
+    }
+
     var totalPrice = quantity * price;
+
+    // Optional: Error handling for invalid quantity input (can be enhanced)
+    if (quantity == 0 && _quantityController.text.isNotEmpty) {
+      return const Text("Invalid quantity. Please enter a number.");
+    }
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25),
@@ -191,7 +202,7 @@ class _OrderScreenState extends State<OrderScreen> {
           ),
         ),
         child: Text(
-          "Price: $totalPrice",
+          "Price: ${totalPrice.toString()}",
           style: TextStyle(
             color: Color(0xff5ac18e),
             fontSize: 18,
@@ -201,7 +212,6 @@ class _OrderScreenState extends State<OrderScreen> {
       ),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {

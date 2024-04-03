@@ -18,7 +18,7 @@ class _DrugListDropdownState extends State<DrugListDropdown> {
 
   // Function to fetch data from Firestore
   Future<List<Drug>> fetchData() async {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('1').get();
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('drugs').get();
     List<Drug> data = [];
     for (var doc in querySnapshot.docs) {
       var itemName = doc.get('drug_name') as String;
